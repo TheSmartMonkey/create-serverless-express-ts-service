@@ -1,7 +1,7 @@
 {
   "name": "sls-express",
   "version": "1.0.0",
-  "main": "dist/endpoints.js",
+  "main": "dist/server.js",
   "scripts": {
     "lint": "eslint src --ext .ts",
     "clear": "rmdir /s \"dist\"",

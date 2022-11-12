@@ -1,10 +1,11 @@
+import { APIGatewayProxyEvent, APIGatewayProxyResult } from 'aws-lambda';
 import { StatusCodes } from 'http-status-codes';
-import { formatJSONResponse, ValidatedEventAPIGatewayProxyEvent } from './../../libs/api-gateway';
-import { logger } from './../../libs/logger';
+import { formatJSONResponse } from '../../libs/adapter/aws/api-gateway';
+import { logger } from './../../libs/utils/logger';
 
 import createHttpError from 'http-errors';
 
-const hello: ValidatedEventAPIGatewayProxyEvent<void> = async (event) => {
+export const main = async (event: Partial<APIGatewayProxyEvent>): Promise<APIGatewayProxyResult> => {
   try {
     const message = event.pathParameters?.message;
     if (!message) throw createHttpError(400, 'message not provided');
@@ -27,5 +28,3 @@ const hello: ValidatedEventAPIGatewayProxyEvent<void> = async (event) => {
     );
   }
 };
-
-export const main = hello;
