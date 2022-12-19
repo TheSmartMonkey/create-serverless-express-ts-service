@@ -1,6 +1,8 @@
 import { describe, expect, test } from '@jest/globals';
-import { getDataFromJSONResponse } from '../../libs/adapter/aws/api-gateway';
+import { StatusCodes } from 'http-status-codes';
+import { Errors } from '../../../src/libs/utils/errors';
 import { executeLambda, generateValidatedAPIGatewayProxyEvent } from '../../libs/tests/mocks';
+import { getDataFromJSONResponse, getMessageFromJSONResponse } from './../../libs/adapter/aws/api-gateway';
 import { main } from './handler';
 
 describe('hello', () => {
@@ -15,6 +17,7 @@ describe('hello', () => {
     const response = await executeLambda(main, event);
 
     // Then
+    expect(response.statusCode).toEqual(StatusCodes.OK);
     expect(getDataFromJSONResponse(response)).toEqual(message);
   });
 
@@ -29,6 +32,8 @@ describe('hello', () => {
     const response = await executeLambda(main, event);
 
     // Then
+    expect(response.statusCode).toEqual(StatusCodes.BAD_REQUEST);
     expect(getDataFromJSONResponse(response)).toEqual(message);
+    expect(getMessageFromJSONResponse(response)).toEqual(Errors.MessageNotProvided);
   });
 });

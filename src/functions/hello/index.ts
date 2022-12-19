@@ -1,7 +1,5 @@
-import { getHttpRoute } from '../../libs/adapter/api-gateway';
-import { ERoutes } from '../../routes';
+import { Routes } from '../../routes';
 import { handlerPath } from './../../libs/utils/handler-resolver';
-import { EPlatforms } from './../../models/adapter.model';
 
 export default {
   handler: `${handlerPath(__dirname)}/handler.main`,
@@ -10,7 +8,7 @@ export default {
     {
       http: {
         method: 'get',
-        path: getHttpRoute(ERoutes.Hello, EPlatforms.AWS),
+        path: Routes.Hello,
       },
     },
   ],

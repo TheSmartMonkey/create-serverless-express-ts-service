@@ -4,8 +4,8 @@ import { main as hello } from './functions/hello/handler';
 import { getHttpRoute } from './libs/adapter/api-gateway';
 import { getDataFromJSONResponse } from './libs/adapter/aws/api-gateway';
 import { convertExpressRequestToAWSEvent } from './libs/adapter/express/api-gateway';
-import { EPlatforms } from './models/adapter.model';
-import { ERoutes } from './routes';
+import { Platforms } from './models/adapter.model';
+import { Routes } from './routes';
 
 // Initialize configuration
 dotenv.config();
@@ -13,7 +13,7 @@ const app = express();
 const port = process.env.SERVER_PORT;
 
 app.get('/', (_req: Request, res: Response) => res.send('Hello !'));
-app.get(getHttpRoute(ERoutes.Hello, EPlatforms.EXPRESS), async (req: Request, res: Response) => {
+app.get(getHttpRoute(Routes.Hello, Platforms.EXPRESS), async (req: Request, res: Response) => {
   const result = await hello(convertExpressRequestToAWSEvent(req));
   res.send(getDataFromJSONResponse<string>(result));
 });

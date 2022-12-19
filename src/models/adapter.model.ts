@@ -1,4 +1,4 @@
-export enum EPlatforms {
+export enum Platforms {
   EXPRESS = 'express',
   AWS = 'aws',
 }

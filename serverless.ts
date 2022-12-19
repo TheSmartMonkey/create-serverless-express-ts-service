@@ -30,33 +30,11 @@ const serverlessConfiguration: AWS = {
     stage: '${self:custom.stageType}',
     region: 'eu-west-3',
     deploymentBucket: {
-      name: '${self:service}-${self:custom.envType}-${self:provider.region}-deployment-bucket',
+      name: '${self:service}-${self:custom.envType}-${self:provider.region}-deployment-bucket-2',
     },
     apiGateway: {
       minimumCompressionSize: 1024,
       shouldStartNameWithService: true,
-    },
-    environment: {
-      OFFLINE: 'true',
-    },
-    iam: {
-      role: {
-        statements: [
-          {
-            Effect: 'Allow',
-            Action: [
-              'dynamodb:DescribeTable',
-              'dynamodb:Query',
-              'dynamodb:Scan',
-              'dynamodb:GetItem',
-              'dynamodb:PutItem',
-              'dynamodb:UpdateItem',
-              'dynamodb:DeleteItem',
-            ],
-            Resource: [{ 'Fn::GetAtt': ['ReportsDynamoDbTable', 'Arn'] }],
-          },
-        ],
-      },
     },
   },
   functions: {
