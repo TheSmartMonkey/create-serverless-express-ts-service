@@ -1,3 +1,3 @@
 export enum Routes {
-  Hello = '/hello/{message}',
+  HELLO = '/hello/{message}',
 }

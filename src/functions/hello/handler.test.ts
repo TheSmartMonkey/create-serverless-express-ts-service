@@ -34,6 +34,6 @@ describe('hello', () => {
     // Then
     expect(response.statusCode).toEqual(StatusCodes.BAD_REQUEST);
     expect(getDataFromJSONResponse(response)).toEqual(message);
-    expect(getMessageFromJSONResponse(response)).toEqual(Errors.MessageNotProvided);
+    expect(getMessageFromJSONResponse(response)).toEqual(Errors.MESSAGE_NOT_PROVIDED);
   });
 });

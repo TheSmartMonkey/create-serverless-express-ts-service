@@ -1,4 +1,4 @@
 export enum Errors {
-  UnknownError = 'UnknownError',
-  MessageNotProvided = 'MessageNotProvided',
+  UNKNOWN_ERROR = 'UnknownError',
+  MESSAGE_NOT_PROVIDED = 'MessageNotProvided',
 }

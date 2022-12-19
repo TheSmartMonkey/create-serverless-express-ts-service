@@ -8,7 +8,7 @@ import { Errors } from '../../../src/libs/utils/errors';
 export const main = async (event: Partial<APIGatewayProxyEvent>): Promise<APIGatewayProxyResult> => {
   try {
     const message = event.pathParameters?.message;
-    if (!message) throw createHttpError(StatusCodes.BAD_REQUEST, Errors.MessageNotProvided);
+    if (!message) throw createHttpError(StatusCodes.BAD_REQUEST, Errors.MESSAGE_NOT_PROVIDED);
 
     return formatJSONResponse<string>(
       {
@@ -20,7 +20,7 @@ export const main = async (event: Partial<APIGatewayProxyEvent>): Promise<APIGat
   } catch (error) {
     return formatJSONResponse<string>(
       {
-        message: error?.message ?? Errors.UnknownError,
+        message: error?.message ?? Errors.UNKNOWN_ERROR,
         data: '',
       },
       error?.statusCode ?? StatusCodes.CONFLICT,

@@ -8,7 +8,7 @@ export default {
     {
       http: {
         method: 'get',
-        path: Routes.Hello,
+        path: Routes.HELLO,
       },
     },
   ],
