@@ -1,6 +1,6 @@
 import { APIGatewayProxyEvent, APIGatewayProxyResult } from 'aws-lambda';
 import { StatusCodes } from 'http-status-codes';
-import { formatJSONResponse } from '../../libs/adapter/aws/api-gateway';
+import { catchAWSHttpError, formatJSONResponse } from '../../libs/adapter/aws/api-gateway';
 
 import createHttpError from 'http-errors';
 import { Errors } from '../../../src/libs/utils/errors';
@@ -18,12 +18,6 @@ export const main = async (event: Partial<APIGatewayProxyEvent>): Promise<APIGat
       StatusCodes.OK,
     );
   } catch (error) {
-    return formatJSONResponse<string>(
-      {
-        message: error?.message ?? Errors.UNKNOWN_ERROR,
-        data: '',
-      },
-      error?.statusCode ?? StatusCodes.CONFLICT,
-    );
+    return catchAWSHttpError<string>(error, '');
   }
 };

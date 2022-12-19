@@ -13,7 +13,7 @@ const app = express();
 const port = process.env.SERVER_PORT;
 
 app.get('/', (_req: Request, res: Response) => res.send('Hello !'));
-app.get(getHttpRoute(Routes.HELLO, Platforms.EXPRESS), async (req: Request, res: Response) => {
+app.get(getHttpRoute(Platforms.EXPRESS, Routes.HELLO), async (req: Request, res: Response) => {
   const result = await hello(convertExpressRequestToAWSEvent(req));
   res.send(getDataFromJSONResponse<string>(result));
 });

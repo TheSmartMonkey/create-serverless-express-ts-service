@@ -1,5 +1,7 @@
 import { Routes } from '../../routes';
+import { getHttpRoute } from './../../libs/adapter/api-gateway';
 import { handlerPath } from './../../libs/utils/handler-resolver';
+import { Platforms } from './../../models/adapter.model';
 
 export default {
   handler: `${handlerPath(__dirname)}/handler.main`,
@@ -8,7 +10,7 @@ export default {
     {
       http: {
         method: 'get',
-        path: Routes.HELLO,
+        path: getHttpRoute(Platforms.AWS, Routes.HELLO),
       },
     },
   ],

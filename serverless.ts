@@ -8,7 +8,7 @@ const serverlessConfiguration: AWS = {
     stageType: '${opt:stage, env:AWS_STAGE, "dev"}',
     envType: '${env:ENV_TYPE, "dev"}',
     prefix: '${self:custom.stageType}-${self:service}',
-    hostedZoneName: '${env:HOSTED_ZONE, "${self:custom.envType}.typescript-msl.ml"}',
+    hostedZoneName: '${env:HOSTED_ZONE, "${self:custom.envType}.typescript.hostedZone"}',
     apiDomainName: 'api.${self:custom.hostedZoneName}',
     apiBasePath: 'api-${self:custom.stageType}-${self:service}',
     esbuild: {
@@ -16,7 +16,7 @@ const serverlessConfiguration: AWS = {
       minify: false,
       sourcemap: true,
       exclude: ['aws-sdk'],
-      target: 'node14',
+      target: 'node16',
       define: { 'require.resolve': undefined },
       platform: 'node',
       concurrency: 10,
@@ -26,7 +26,7 @@ const serverlessConfiguration: AWS = {
   plugins: ['serverless-esbuild', 'serverless-deployment-bucket', 'serverless-offline'],
   provider: {
     name: 'aws',
-    runtime: 'nodejs14.x',
+    runtime: 'nodejs16.x',
     stage: '${self:custom.stageType}',
     region: 'eu-west-3',
     deploymentBucket: {

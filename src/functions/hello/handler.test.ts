@@ -36,4 +36,16 @@ describe('hello', () => {
     expect(getDataFromJSONResponse(response)).toEqual(message);
     expect(getMessageFromJSONResponse(response)).toEqual(Errors.MESSAGE_NOT_PROVIDED);
   });
+
+  test('Should throw 400 when message is not provided', async () => {
+    // Given
+    // When
+    const event = generateValidatedAPIGatewayProxyEvent({});
+    const response = await executeLambda(main, event);
+
+    // Then
+    expect(response.statusCode).toEqual(StatusCodes.BAD_REQUEST);
+    expect(getDataFromJSONResponse(response)).toEqual('');
+    expect(getMessageFromJSONResponse(response)).toEqual(Errors.MESSAGE_NOT_PROVIDED);
+  });
 });
