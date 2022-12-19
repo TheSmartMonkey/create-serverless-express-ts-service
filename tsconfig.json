@@ -1,21 +1,42 @@
 {
+    "extends": "./tsconfig.paths.json",
     "compilerOptions": {
-        "module": "commonjs",
-        "esModuleInterop": true,
-        "target": "es6",
-        "noImplicitAny": true,
-        "moduleResolution": "node",
-        "sourceMap": true,
-        "outDir": "dist",
-        "baseUrl": ".",
-        "paths": {
-            "*": [
-                "node_modules/*"
-            ]
-        },
         "lib": [
-            "ES2021.String"
-        ]
+            "DOM",
+            "ESNext"
+        ],
+        "module": "commonjs",
+        "moduleResolution": "node",
+        "removeComments": true,
+        "sourceMap": true,
+        "target": "ES2021",
+        "outDir": "lib",
+        "allowSyntheticDefaultImports": true,
+        "esModuleInterop": true,
+        /* Type Checking */
+        "strict": true,
+        "noImplicitAny": true,
+        "strictNullChecks": true,
+        "noUnusedParameters": true,
+        "noImplicitReturns": true,
+        "noFallthroughCasesInSwitch": true,
+        "skipLibCheck": true,
+        // Modules imports shortcuts
+        // "baseUrl": ".",
+        // "paths": {
+        //     "@functions/*": [
+        //         "src/functions/*"
+        //     ],
+        //     "@libs/*": [
+        //         "src/libs/*"
+        //     ],
+        //     "@schemas/*": [
+        //         "src/schemas/*"
+        //     ],
+        //     "@templates/*": [
+        //         "src/templates/*"
+        //     ]
+        // }
     },
     "include": [
         "src/**/*.ts",
@@ -30,4 +51,9 @@
         "_warmup/**/*",
         ".vscode/**/*"
     ],
+    "ts-node": {
+        "require": [
+            "tsconfig-paths/register"
+        ]
+    }
 }

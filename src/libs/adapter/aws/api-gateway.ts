@@ -1,8 +1,8 @@
 import type { APIGatewayProxyResult } from 'aws-lambda';
 import { HttpError } from 'http-errors';
 import { StatusCodes } from 'http-status-codes';
-import { Errors } from '../../../../src/libs/utils/errors';
-import { logger } from './../../utils/logger';
+import { Errors } from '@libs/utils/errors';
+import { logger } from '@libs/utils/logger';
 
 export type JsonResponse<T> = {
   message: string;

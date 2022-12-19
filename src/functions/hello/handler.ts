@@ -1,9 +1,9 @@
 import { APIGatewayProxyEvent, APIGatewayProxyResult } from 'aws-lambda';
 import { StatusCodes } from 'http-status-codes';
-import { catchAWSHttpError, formatJSONResponse } from '../../libs/adapter/aws/api-gateway';
+import { Errors } from '@libs/utils/errors';
 
-import createHttpError from 'http-errors';
-import { Errors } from '../../../src/libs/utils/errors';
+import createHttpError, { HttpError } from 'http-errors';
+import { catchAWSHttpError, formatJSONResponse } from '@libs/adapter/aws/api-gateway';
 
 export const main = async (event: Partial<APIGatewayProxyEvent>): Promise<APIGatewayProxyResult> => {
   try {
@@ -18,6 +18,6 @@ export const main = async (event: Partial<APIGatewayProxyEvent>): Promise<APIGat
       StatusCodes.OK,
     );
   } catch (error) {
-    return catchAWSHttpError<string>(error, '');
+    return catchAWSHttpError<string>(error as HttpError, '');
   }
 };

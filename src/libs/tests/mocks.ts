@@ -17,12 +17,12 @@ export const requestContext = {
   },
 };
 
-export function generateValidatedAPIGatewayProxyEvent<T>(event: {
+export function generateValidatedAPIGatewayProxyEvent(event: {
   body?: string;
   pathParameters?: APIGatewayProxyEventPathParameters;
   queryStringParameters?: APIGatewayProxyEventQueryStringParameters;
   claims?: { email: string; sub: string };
-}): T {
+}): Partial<APIGatewayProxyEvent> {
   return {
     headers: {},
     requestContext: {
@@ -33,7 +33,7 @@ export function generateValidatedAPIGatewayProxyEvent<T>(event: {
     pathParameters: event.pathParameters,
     queryStringParameters: event.queryStringParameters,
     body: event.body,
-  } as T;
+  } as Partial<APIGatewayProxyEvent>;
 }
 
 export async function executeLambda(

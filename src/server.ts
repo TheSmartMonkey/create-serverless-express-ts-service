@@ -1,10 +1,10 @@
 import dotenv from 'dotenv';
 import express, { Request, Response } from 'express';
-import { main as hello } from './functions/hello/handler';
-import { getHttpRoute } from './libs/adapter/api-gateway';
-import { getDataFromJSONResponse } from './libs/adapter/aws/api-gateway';
-import { convertExpressRequestToAWSEvent } from './libs/adapter/express/api-gateway';
-import { Platforms } from './models/adapter.model';
+import { main as hello } from '@functions/hello/handler';
+import { getHttpRoute } from '@libs/adapter/api-gateway';
+import { getDataFromJSONResponse } from '@libs/adapter/aws/api-gateway';
+import { convertExpressRequestToAWSEvent } from '@libs/adapter/express/api-gateway';
+import { Platforms } from '@models/adapter.model';
 import { Routes } from './routes';
 
 // Initialize configuration

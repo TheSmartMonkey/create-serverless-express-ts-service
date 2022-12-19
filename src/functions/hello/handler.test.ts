@@ -1,8 +1,8 @@
 import { describe, expect, test } from '@jest/globals';
 import { StatusCodes } from 'http-status-codes';
-import { Errors } from '../../../src/libs/utils/errors';
-import { executeLambda, generateValidatedAPIGatewayProxyEvent } from '../../libs/tests/mocks';
-import { getDataFromJSONResponse, getMessageFromJSONResponse } from './../../libs/adapter/aws/api-gateway';
+import { Errors } from '@libs/utils/errors';
+import { executeLambda, generateValidatedAPIGatewayProxyEvent } from '@libs/tests/mocks';
+import { getDataFromJSONResponse, getMessageFromJSONResponse } from '@libs/adapter/aws/api-gateway';
 import { main } from './handler';
 
 describe('hello', () => {

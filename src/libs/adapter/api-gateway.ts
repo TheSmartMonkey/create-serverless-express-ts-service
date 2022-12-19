@@ -1,4 +1,4 @@
-import { Platforms } from './../../models/adapter.model';
+import { Platforms } from '@models/adapter.model';
 import { Routes } from './../../routes';
 
 export const getHttpRoute = (platform: Platforms, route: Routes) => {
