@@ -10,7 +10,7 @@ import { Routes } from './routes';
 // Initialize configuration
 dotenv.config();
 const app = express();
-const port = process.env.SERVER_PORT;
+const port = process.env.SERVER_PORT ?? 3001;
 
 app.get('/', (_req: Request, res: Response) => res.send('Hello !'));
 app.get(getHttpRoute(Platforms.EXPRESS, Routes.HELLO), async (req: Request, res: Response) => {

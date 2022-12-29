@@ -21,22 +21,6 @@
         "noImplicitReturns": true,
         "noFallthroughCasesInSwitch": true,
         "skipLibCheck": true,
-        // Modules imports shortcuts
-        // "baseUrl": ".",
-        // "paths": {
-        //     "@functions/*": [
-        //         "src/functions/*"
-        //     ],
-        //     "@libs/*": [
-        //         "src/libs/*"
-        //     ],
-        //     "@schemas/*": [
-        //         "src/schemas/*"
-        //     ],
-        //     "@templates/*": [
-        //         "src/templates/*"
-        //     ]
-        // }
     },
     "include": [
         "src/**/*.ts",

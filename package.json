@@ -11,11 +11,14 @@
     "deploy": "sls deploy --verbose",
     "undeploy": "sls remove --verbose",
     "offline": "sls offline start",
-    "test": "jest"
+    "test": "jest",
+    "openapi": "ts-node openapi/generate-openapi.ts openapi/dist",
+    "sdk": "npm run openapi && npx @openapitools/openapi-generator-cli generate -i openapi/dist/openapi.json -g typescript-node -o openapi/dist/api-sdk -c openapi/config.json"
+
   },
   "license": "MIT",
   "dependencies": {
-    "axios": "^0.27.2",
+    "aws-sdk": "^2.1282.0",
     "dotenv": "^16.0.2",
     "express": "^4.18.1",
     "http-errors": "^2.0.0",
