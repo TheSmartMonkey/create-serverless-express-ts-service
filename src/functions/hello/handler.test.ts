@@ -2,10 +2,10 @@
  * @group unit
  */
 import { describe, expect, test } from '@jest/globals';
-import { StatusCodes } from 'http-status-codes';
-import { Errors } from '@libs/utils/errors';
-import { executeLambda, generateValidatedAPIGatewayProxyEvent } from '@libs/tests/mocks';
 import { getDataFromJSONResponse, getMessageFromJSONResponse } from '@libs/adapter/aws/api-gateway';
+import { executeLambda, generateValidatedAPIGatewayProxyEvent } from '@libs/tests/mocks';
+import { Errors } from '@libs/utils/errors';
+import { StatusCodes } from 'http-status-codes';
 import { main } from './handler';
 
 describe('hello', () => {

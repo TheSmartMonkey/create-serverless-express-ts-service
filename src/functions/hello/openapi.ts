@@ -1,34 +1,28 @@
-import { getHttpRoute } from '@libs/adapter/api-gateway';
-import { Platforms } from '@models/adapter.model';
+import { generatePathParameterConfig, getDescription, getServiceTag } from '@libs/adapter/openapi';
+import { getCurrentFolderPath, getCurrentFolderName } from '@libs/utils/handler-resolver';
 import { Routes } from 'src/routes';
+
+import index from './index';
+
+const folderPath = getCurrentFolderPath(__dirname);
+const folderName = getCurrentFolderName(folderPath);
+const route: Routes = index.events[0].http.path as Routes;
 
 export default {
   paths: {
-    [getHttpRoute(Platforms.AWS, Routes.HELLO)]: {
+    [route]: {
       get: {
-        summary: 'hello message',
-        description: 'hello message',
-        operationId: 'hello',
-        tags: ['userAPI'],
-        parameters: [
-          {
-            name: 'message',
-            in: 'path',
-            required: true,
-            description: 'message',
-            schema: {
-              type: 'string',
-            },
-          },
-        ],
+        ...getDescription(folderPath),
+        tags: [getServiceTag()],
+        parameters: [...generatePathParameterConfig(route)],
         responses: {
           '200': {
-            description: 'hello',
+            description: folderName,
             content: {
               'application/json': {
                 schema: {
                   type: 'object',
-                  title: 'display message',
+                  title: folderName,
                   properties: {
                     message: { type: 'string' },
                     data: { type: 'string' },
