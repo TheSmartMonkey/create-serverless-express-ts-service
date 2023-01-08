@@ -3,7 +3,7 @@ import { Routes } from 'src/routes';
 
 const SERVICE_NAME = 'serverlessAPI';
 
-export const getDescription = (folderPath: string) => {
+export const getDescription = (folderPath: string): object => {
   const currentFolder = getCurrentFolderName(folderPath);
   return {
     summary: currentFolder,
@@ -30,7 +30,7 @@ export const generatePathParameterConfig = (route: Routes): object[] => {
       },
     });
   }
-  return pathParameterConfig
+  return pathParameterConfig;
 };
 
 const getPathParameters = (route: Routes): string[] => {
