@@ -1,7 +1,7 @@
 import { getCurrentFolderName } from '@libs/utils/handler-resolver';
 import { Routes } from 'src/routes';
 
-const SERVICE_NAME = 'serverlessAPI';
+const SERVICE_NAME = 'serverless';
 
 export function getDescription(folderPath: string): object {
   const currentFolder = getCurrentFolderName(folderPath);

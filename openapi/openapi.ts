@@ -1,6 +1,10 @@
 import merge from 'lodash';
 
+// Functions
 import hello from '@functions/hello/openapi';
+
+// Schemas
+import HelloSchema from '@schemas/hello.schema';
 
 export default merge({
   openapi: '3.0.0',
@@ -15,4 +19,9 @@ export default merge({
       description: 'API access through API Gateway direct domain',
     },
   ],
+  components: {
+    schemas: {
+      Hello: HelloSchema,
+    },
+  },
 }).merge(hello);

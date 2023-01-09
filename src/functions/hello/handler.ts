@@ -5,6 +5,7 @@ import { StatusCodes } from 'http-status-codes';
 import { catchAWSHttpError, formatJSONResponse } from '@libs/adapter/aws/api-gateway';
 import { logger } from '@libs/utils/logger';
 import createHttpError, { HttpError } from 'http-errors';
+import { HelloDto } from '@models/hello.model';
 
 export async function main(event: Partial<APIGatewayProxyEvent>): Promise<APIGatewayProxyResult> {
   try {
@@ -13,14 +14,14 @@ export async function main(event: Partial<APIGatewayProxyEvent>): Promise<APIGat
 
     logger.info({ message }, 'hello message');
 
-    return formatJSONResponse<string>(
+    return formatJSONResponse<HelloDto>(
       {
         message: 'Hello World !',
-        data: message,
+        data: { message },
       },
       StatusCodes.OK,
     );
   } catch (error) {
-    return catchAWSHttpError<string>(error as HttpError, '');
+    return catchAWSHttpError<HelloDto>(error as HttpError, { message: '' });
   }
 }
