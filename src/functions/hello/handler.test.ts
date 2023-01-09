@@ -4,11 +4,16 @@
 import { describe, expect, test } from '@jest/globals';
 import { getDataFromJSONResponse, getMessageFromJSONResponse } from '@libs/adapter/aws/api-gateway';
 import { executeLambda, generateValidatedAPIGatewayProxyEvent } from '@libs/tests/mocks';
+import { initUnitTests } from '@libs/tests/utils';
 import { Errors } from '@libs/utils/errors';
 import { StatusCodes } from 'http-status-codes';
 import { main } from './handler';
 
-describe('hello', () => {
+describe('hello unit', () => {
+  beforeAll(() => {
+    initUnitTests();
+  });
+
   test('Should return a message', async () => {
     // Given
     const message = 'simple message !';
