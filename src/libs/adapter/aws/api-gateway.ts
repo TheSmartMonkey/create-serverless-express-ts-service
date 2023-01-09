@@ -1,30 +1,30 @@
+import { Errors } from '@libs/utils/errors';
+import { logger } from '@libs/utils/logger';
 import type { APIGatewayProxyResult } from 'aws-lambda';
 import { HttpError } from 'http-errors';
 import { StatusCodes } from 'http-status-codes';
-import { Errors } from '@libs/utils/errors';
-import { logger } from '@libs/utils/logger';
 
 export type JsonResponse<T> = {
   message: string;
   data: T;
 };
 
-export const formatJSONResponse = <T>(response: JsonResponse<T>, statusCode: StatusCodes): APIGatewayProxyResult => {
+export function formatJSONResponse<T>(response: JsonResponse<T>, statusCode: StatusCodes): APIGatewayProxyResult {
   return {
     statusCode,
     body: JSON.stringify(response),
   };
-};
+}
 
-export const getDataFromJSONResponse = <T>(response: APIGatewayProxyResult): T => {
+export function getDataFromJSONResponse<T>(response: APIGatewayProxyResult): T {
   return JSON.parse(response.body).data;
-};
+}
 
-export const getMessageFromJSONResponse = (response: APIGatewayProxyResult): string => {
+export function getMessageFromJSONResponse(response: APIGatewayProxyResult): string {
   return JSON.parse(response.body).message;
-};
+}
 
-export const catchAWSHttpError = <T>(error: HttpError, data: T): APIGatewayProxyResult => {
+export function catchAWSHttpError<T>(error: HttpError, data: T): APIGatewayProxyResult {
   logger.error(error);
   return formatJSONResponse<T>(
     {
@@ -33,4 +33,4 @@ export const catchAWSHttpError = <T>(error: HttpError, data: T): APIGatewayProxy
     },
     error?.statusCode ?? StatusCodes.CONFLICT,
   );
-};
+}

@@ -1,10 +1,11 @@
-import dotenv from 'dotenv';
-import express, { Request, Response } from 'express';
 import { main as hello } from '@functions/hello/handler';
 import { getHttpRoute } from '@libs/adapter/api-gateway';
 import { getDataFromJSONResponse } from '@libs/adapter/aws/api-gateway';
 import { convertExpressRequestToAWSEvent } from '@libs/adapter/express/api-gateway';
+import { logger } from '@libs/utils/logger';
 import { Platforms } from '@models/adapter.model';
+import dotenv from 'dotenv';
+import express, { Request, Response } from 'express';
 import { Routes } from './routes';
 
 // Initialize configuration
@@ -18,4 +19,4 @@ app.get(getHttpRoute(Platforms.EXPRESS, Routes.HELLO), async (req: Request, res:
   res.send(getDataFromJSONResponse<string>(result));
 });
 
-app.listen(port, () => console.log(`App listening at http://localhost:${port}`));
+app.listen(port, () => logger.info(`App listening at http://localhost:${port}`));
