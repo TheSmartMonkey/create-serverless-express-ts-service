@@ -26,7 +26,7 @@ describe('hello unit', () => {
 
     // Then
     expect(response.statusCode).toEqual(StatusCodes.OK);
-    expect(getDataFromJSONResponse(response)).toEqual(message);
+    expect(getDataFromJSONResponse(response)).toEqual({ message });
   });
 
   test('Should return a empty message', async () => {
@@ -41,7 +41,7 @@ describe('hello unit', () => {
 
     // Then
     expect(response.statusCode).toEqual(StatusCodes.BAD_REQUEST);
-    expect(getDataFromJSONResponse(response)).toEqual(message);
+    expect(getDataFromJSONResponse(response)).toEqual({ message });
     expect(getMessageFromJSONResponse(response)).toEqual(Errors.MESSAGE_NOT_PROVIDED);
   });
 
@@ -53,7 +53,7 @@ describe('hello unit', () => {
 
     // Then
     expect(response.statusCode).toEqual(StatusCodes.BAD_REQUEST);
-    expect(getDataFromJSONResponse(response)).toEqual('');
+    expect(getDataFromJSONResponse(response)).toEqual({ message: '' });
     expect(getMessageFromJSONResponse(response)).toEqual(Errors.MESSAGE_NOT_PROVIDED);
   });
 });
