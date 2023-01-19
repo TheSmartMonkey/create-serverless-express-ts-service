@@ -22,7 +22,7 @@ export default {
               'application/json': {
                 schema: {
                   type: 'object',
-                  title: '',
+                  title: 'message', // Function type name
                   properties: {
                     message: { type: 'string' },
                     data: {

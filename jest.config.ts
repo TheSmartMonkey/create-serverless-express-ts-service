@@ -4,12 +4,7 @@ export default {
   coveragePathIgnorePatterns: ['.*__snapshots__/.*', '.*/index.ts', '.*/openapi.ts', '.*/schemas/.*'],
   coverageDirectory: 'coverage',
   coverageProvider: 'v8',
-  coverageReporters: [
-    'json',
-    'lcov',
-    'clover',
-    'cobertura',
-  ],
+  coverageReporters: ['json', 'lcov', 'clover', 'cobertura'],
   moduleNameMapper: {
     '@functions/(.*)': '<rootDir>/src/functions/$1',
     '@libs/(.*)': '<rootDir>/src/libs/$1',
@@ -20,9 +15,12 @@ export default {
   roots: ['<rootDir>'],
   testEnvironment: 'node',
   transform: {
-    '^.+\\.tsx?$': ['ts-jest', {
-      isolatedModules: true,
-    }],
+    '^.+\\.tsx?$': [
+      'ts-jest',
+      {
+        isolatedModules: true,
+      },
+    ],
     '\\.html?$': [
       'esbuild-jest',
       {

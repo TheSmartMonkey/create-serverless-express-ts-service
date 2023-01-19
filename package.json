@@ -4,6 +4,8 @@
   "main": "dist/server.js",
   "scripts": {
     "lint": "eslint src --ext .ts",
+    "format": "npx prettier --write .",
+    "format:check": "npx prettier --check .",
     "clear": "rmdir /s \"dist\"",
     "build": "tsc",
     "start": "npm run build && node .",
