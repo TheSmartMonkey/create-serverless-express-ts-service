@@ -4,7 +4,7 @@ export function initUnitTests(): void {
   logger.level = 'fatal';
 }
 
-export function initAcceptanceTests(): void {
+export function initIntegrationTests(): void {
   logger.level = 'fatal';
   process.env.OFFLINE = 'true';
 }

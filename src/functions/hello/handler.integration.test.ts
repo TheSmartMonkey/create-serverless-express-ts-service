@@ -1,12 +1,12 @@
 /**
- * @group acceptance
+ * @group integration
  */
 import { describe, expect, test } from '@jest/globals';
-import { initAcceptanceTests } from '@libs/tests/utils';
+import { initIntegrationTests } from '@libs/tests/utils';
 
-describe('hello acceptance', () => {
+describe('hello integration', () => {
   beforeAll(() => {
-    initAcceptanceTests();
+    initIntegrationTests();
   });
 
   test('Should return true', async () => {

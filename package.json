@@ -14,9 +14,9 @@
     "deploy:prod": "cross-env-shell AWS_STAGE=prod STAGE_TYPE=prod sls deploy --verbose",
     "undeploy": "sls remove --verbose",
     "offline": "sls offline start",
-    "test": "npm run unit && npm run acceptance",
+    "test": "npm run unit && npm run integration",
     "unit": "jest --group=unit",
-    "acceptance": "jest --group=acceptance --maxWorkers=1",
+    "integration": "jest --group=integration --maxWorkers=1",
     "openapi": "ts-node openapi/generate-openapi.ts openapi/dist",
     "sdk": "npm run openapi && npx @openapitools/openapi-generator-cli generate -i openapi/dist/openapi.json -g typescript-node -o openapi/dist/api-sdk -c openapi/config.json"
   },
