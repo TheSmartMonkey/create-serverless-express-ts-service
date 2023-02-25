@@ -7,7 +7,7 @@
     "removeComments": true,
     "sourceMap": true,
     "target": "ES2021",
-    "outDir": "lib",
+    "outDir": "dist",
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     /* Type Checking */
