@@ -25,3 +25,17 @@ Changes to be done
 Create a cloud formation stack on aws : `npm run deploy`
 
 Remove a cloud formation stack on aws : `npm run undeploy`
+
+## Import templates with plop to code faster
+
+Clone the git repository anywhere on you computer
+
+```sh
+git clone git@github.com:TheSmartMonkey/template-cli.git
+```
+
+Import templates like `lambda-function-api-endpoint`
+
+```sh
+plop --plopfile <TEMPLATE_CLI_LOCATION/plopfile.mjs> --dest .
+```
