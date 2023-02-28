@@ -6,7 +6,7 @@ import { initIntegrationTests } from '@libs/tests/utils';
 
 describe('hello integration', () => {
   beforeAll(() => {
-    initIntegrationTests();
+    initIntegrationTests({ debug: false });
   });
 
   test('Should return true', async () => {
