@@ -13,6 +13,7 @@ export default {
   },
   reporters: ['default', 'jest-junit'],
   roots: ['<rootDir>'],
+  runner: 'groups',
   testEnvironment: 'node',
   transform: {
     '^.+\\.tsx?$': [
