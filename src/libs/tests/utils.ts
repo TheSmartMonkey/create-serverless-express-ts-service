@@ -1,10 +1,10 @@
 import { logger } from '@libs/utils/logger';
 
-export function initUnitTests({ debug }: { debug: boolean }): void {
-  logger.level = debug ? 'debug' : 'fatal';
+export function initUnitTests(): void {
+  logger.level = process.env.NO_LOGS === 'true' ? 'fatal' : 'debug';
 }
 
-export function initIntegrationTests({ debug }: { debug: boolean }): void {
-  logger.level = debug ? 'debug' : 'fatal';
+export function initIntegrationTests(): void {
+  logger.level = process.env.NO_LOGS === 'true' ? 'fatal' : 'debug';
   process.env.OFFLINE = 'true';
 }

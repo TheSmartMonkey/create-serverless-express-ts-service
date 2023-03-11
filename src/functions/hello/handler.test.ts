@@ -11,7 +11,7 @@ import { main } from './handler';
 
 describe('hello unit', () => {
   beforeAll(() => {
-    initUnitTests({ debug: false });
+    initUnitTests();
   });
 
   test('Should return a message', async () => {
