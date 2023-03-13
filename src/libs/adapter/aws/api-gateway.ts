@@ -31,6 +31,6 @@ export function catchAWSHttpError<T>(error: HttpError, data: T): APIGatewayProxy
       message: error?.message ?? Errors.UNKNOWN_ERROR,
       data,
     },
-    error?.statusCode ?? StatusCodes.CONFLICT,
+    error?.statusCode ?? StatusCodes.INTERNAL_SERVER_ERROR,
   );
 }
