@@ -2,10 +2,10 @@ import { Errors } from '@libs/utils/errors';
 import { APIGatewayProxyEvent, APIGatewayProxyResult } from 'aws-lambda';
 import { StatusCodes } from 'http-status-codes';
 
-import { catchAWSHttpError, formatJSONResponse } from '@libs/adapter/aws/api-gateway';
 import { logger } from '@libs/utils/logger';
-import createHttpError, { HttpError } from 'http-errors';
+import { catchAWSHttpError, formatJSONResponse } from '@libs/adapter/api-gateway';
 import { HelloDto } from '@models/hello.model';
+import createHttpError, { HttpError } from 'http-errors';
 
 export async function main(event: Partial<APIGatewayProxyEvent>): Promise<APIGatewayProxyResult> {
   try {

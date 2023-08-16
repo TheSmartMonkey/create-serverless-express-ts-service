@@ -1,10 +1,36 @@
-import { Platforms } from '@models/adapter.model';
-import { Routes } from './../../routes';
+import { Errors } from '@libs/utils/errors';
+import { logger } from '@libs/utils/logger';
+import type { APIGatewayProxyResult } from 'aws-lambda';
+import { HttpError } from 'http-errors';
+import { StatusCodes } from 'http-status-codes';
 
-export function getHttpRoute(platform: Platforms, route: Routes): string {
-  const routeFormat = {
-    [Platforms.EXPRESS]: route.replace(/{/g, ':').replace(/}/g, ''),
-    [Platforms.AWS]: route,
+export type JsonResponse<T> = {
+  message: string;
+  data: T;
+};
+
+export function formatJSONResponse<T>(response: JsonResponse<T>, statusCode: StatusCodes): APIGatewayProxyResult {
+  return {
+    statusCode,
+    body: JSON.stringify(response),
   };
-  return routeFormat[platform];
+}
+
+export function getDataFromJSONResponse<T>(response: APIGatewayProxyResult): T {
+  return JSON.parse(response.body).data;
+}
+
+export function getMessageFromJSONResponse(response: APIGatewayProxyResult): string {
+  return JSON.parse(response.body).message;
+}
+
+export function catchAWSHttpError<T>(error: HttpError, data: T): APIGatewayProxyResult {
+  logger.error(error);
+  return formatJSONResponse<T>(
+    {
+      message: error?.message ?? Errors.UNKNOWN_ERROR,
+      data,
+    },
+    error?.statusCode ?? StatusCodes.INTERNAL_SERVER_ERROR,
+  );
 }

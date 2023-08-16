@@ -1,16 +1,13 @@
+import { BASE_URL } from '@libs/adapter/express';
 import type { AWS } from '@serverless/typescript';
-import hello from './src/functions/hello';
 
 const serverlessConfiguration: AWS = {
-  service: 'serverless-ts-service',
+  service: 'serverless-express-ts-service',
   frameworkVersion: '3',
+  useDotenv: true,
   custom: {
     stageType: '${opt:stage, env:AWS_STAGE, "dev"}',
-    envType: '${env:ENV_TYPE, "dev"}',
-    prefix: '${self:custom.stageType}-${self:service}',
-    hostedZoneName: '${env:HOSTED_ZONE, "${self:custom.envType}.typescript.hostedZone"}',
-    apiDomainName: 'api.${self:custom.hostedZoneName}',
-    apiBasePath: 'api-${self:custom.stageType}-${self:service}',
+
     esbuild: {
       bundle: true,
       minify: false,
@@ -23,34 +20,52 @@ const serverlessConfiguration: AWS = {
       loader: { '.html': 'text' },
     },
   },
-  plugins: ['serverless-esbuild', 'serverless-deployment-bucket', 'serverless-offline'],
+  plugins: ['serverless-esbuild', 'serverless-deployment-bucket'],
   provider: {
     name: 'aws',
     runtime: 'nodejs16.x',
     stage: '${self:custom.stageType}',
     region: 'eu-west-3',
     deploymentBucket: {
-      name: '${self:service}-${self:custom.envType}-${self:provider.region}-deployment-bucket-2',
+      name: '${self:service}-${self:provider.region}-deployment-bucket',
     },
     apiGateway: {
       minimumCompressionSize: 1024,
       shouldStartNameWithService: true,
     },
-  },
-  functions: {
-    hello,
-  },
-  package: {
-    // When true optimise lambda performance but increase deployment time
-    individually: !!process.env.STAGE_TYPE && process.env.STAGE_TYPE !== 'dev',
-  },
-  resources: {
-    Outputs: {
-      ApiURL: {
-        Value: 'https://${self:custom.apiDomainName}/${self:custom.apiBasePath}',
-      },
+    environment: {
+      AWS_STAGE: '${self:custom.stageType}',
+
+      // .env variables
+      ATLAS_DB_URL: '${env:ATLAS_DB_URL}',
+      MONGODB_USERNAME: '${env:MONGODB_USERNAME}',
+      MONGODB_PASSWORD: '${env:MONGODB_PASSWORD}',
+      MONGODB_NAME: '${env:MONGODB_NAME}',
     },
   },
+  functions: {
+    api: {
+      handler: 'src/server.handler',
+      events: [
+        {
+          http: {
+            method: 'ANY',
+            path: BASE_URL,
+          },
+        },
+        {
+          http: {
+            method: 'ANY',
+            path: `${BASE_URL}/{proxy+}`,
+          },
+        },
+      ],
+    },
+  },
+  package: {
+    individually: true,
+  },
+  resources: {},
 };
 
 module.exports = serverlessConfiguration;

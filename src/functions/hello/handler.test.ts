@@ -2,7 +2,7 @@
  * @group unit
  */
 import { describe, expect, test } from '@jest/globals';
-import { getDataFromJSONResponse, getMessageFromJSONResponse } from '@libs/adapter/aws/api-gateway';
+import { getDataFromJSONResponse, getMessageFromJSONResponse } from '@libs/adapter/api-gateway';
 import { executeLambda, generateValidatedAPIGatewayProxyEvent } from '@libs/tests/mocks';
 import { initUnitTests } from '@libs/tests/utils';
 import { Errors } from '@libs/utils/errors';
