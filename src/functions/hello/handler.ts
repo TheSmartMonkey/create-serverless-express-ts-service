@@ -1,15 +1,16 @@
 import { Errors } from '@libs/utils/errors';
-import { APIGatewayProxyEvent, APIGatewayProxyResult } from 'aws-lambda';
+import { APIGatewayProxyResult } from 'aws-lambda';
 import { StatusCodes } from 'http-status-codes';
 
-import { logger } from '@libs/utils/logger';
 import { catchAWSHttpError, formatJSONResponse } from '@libs/adapter/api-gateway';
+import { logger } from '@libs/utils/logger';
 import { HelloDto } from '@models/hello.model';
+import { Request } from 'express';
 import createHttpError, { HttpError } from 'http-errors';
 
-export async function main(event: Partial<APIGatewayProxyEvent>): Promise<APIGatewayProxyResult> {
+export async function main(request: Request): Promise<APIGatewayProxyResult> {
   try {
-    const message = event.pathParameters?.message;
+    const message = request.params.message;
     if (!message) throw createHttpError(StatusCodes.BAD_REQUEST, Errors.MESSAGE_NOT_PROVIDED);
 
     logger.info({ message }, 'hello message');
