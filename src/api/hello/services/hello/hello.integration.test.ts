@@ -2,7 +2,7 @@
  * @group integration
  */
 import { describe, expect, test } from '@jest/globals';
-import { initIntegrationTests } from '@libs/tests/utils';
+import { initIntegrationTests } from '@libs/tests/helper';
 
 describe('hello integration', () => {
   beforeAll(() => {

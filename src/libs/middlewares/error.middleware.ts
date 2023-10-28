@@ -1,14 +1,17 @@
-import { HttpResponse } from '@models/http.model';
-import { NextFunction, Request, Response } from 'express';
+import { formatHttpResponse } from '@libs/helpers/helper';
+import { logger } from '@libs/helpers/logger';
+import { Request, Response } from 'express';
 
-export function errorHandlerMiddleware(error: any, req: Request, res: Response, next: NextFunction): void {
-  console.error(error);
+export function errorHandlerMiddleware(error: any, _req: Request, res: Response): void {
+  logger.error(error);
   const statusCode = error?.statusCode ?? 500;
   const message = error?.message ?? 'UNKNOWN_ERROR';
-  const response: HttpResponse<undefined> = {
+  const response = formatHttpResponse({
     statusCode,
-    message,
-    error,
-  };
+    body: {
+      message,
+      error,
+    },
+  });
   res.status(statusCode).json(response);
 }
