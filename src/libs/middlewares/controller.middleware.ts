@@ -1,10 +1,9 @@
-import { ExpressRequest } from '@models/http.model';
-import { NextFunction, Response } from 'express';
+import { NextFunction, Request, Response } from 'express';
 
 export function controllerMiddleware<T>(callback: (data: T) => any) {
-  return async (req: ExpressRequest<T>, _res: Response, next: NextFunction): Promise<void> => {
+  return async (req: Request, _res: Response, next: NextFunction): Promise<void> => {
     try {
-      req.body = await callback(req.data);
+      req.body = await callback(req.body);
       next();
     } catch (error) {
       next(error);

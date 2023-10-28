@@ -1,14 +1,17 @@
-import { ExpressRequest } from '@models/http.model';
+import { logger } from '@libs/helpers/logger';
 import { validateOrReject } from 'class-validator';
-import { NextFunction, Response } from 'express';
-import createHttpError from 'http-errors';
+import { NextFunction, Request, Response } from 'express';
 
-export async function dtoValidationMiddleware<T>(type: new () => T) {
-  return async (req: ExpressRequest<T>, _res: Response, next: NextFunction): Promise<void> => {
+export function dtoValidationMiddleware<T>(type: new () => T) {
+  return async (req: Request, _res: Response, next: NextFunction): Promise<void> => {
     try {
-      if (!req.data) throw createHttpError(500, "You've forgot to use getDataMiddleware");
+      // Concatenate data
+      req.body = { ...req.params, ...req.body, ...req.query };
+      logger.info({ body: req?.body });
+
+      // Validate data
       const objectToValidate = new type();
-      Object.assign(objectToValidate as object, req.data);
+      Object.assign(objectToValidate as object, req.body);
       await validateOrReject(objectToValidate as any);
       next();
     } catch (error: any) {
