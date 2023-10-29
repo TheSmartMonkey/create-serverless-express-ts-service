@@ -1,5 +1,5 @@
 {
-  "name": "cocadeau-api-service",
+  "name": "create-serverless-express-ts-service",
   "version": "1.0.0",
   "main": "dist/src/server.js",
   "scripts": {
