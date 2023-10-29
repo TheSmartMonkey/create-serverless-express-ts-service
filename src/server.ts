@@ -5,7 +5,10 @@ import { sendJsonMiddleware } from '@middlewares/send-json.middleware';
 import dotenv from 'dotenv';
 import express from 'express';
 import serverless from 'serverless-http';
+
+// Routes
 import helloRoutes from '@api/hello/routes';
+import todoRoutes from '@api/todo/routes';
 
 // Initialize configuration
 dotenv.config();
@@ -14,6 +17,7 @@ app.use(express.json());
 
 // Global routes
 app.use(`${BASE_URL}/hello`, helloRoutes);
+app.use(`${BASE_URL}/todo`, todoRoutes);
 
 // Middlewares
 app.use(errorHandlerMiddleware);

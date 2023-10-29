@@ -7,6 +7,7 @@ export default {
   coverageReporters: ['json', 'lcov', 'clover', 'cobertura'],
   moduleNameMapper: {
     '@api/(.*)': '<rootDir>/src/api/$1',
+    '@db/(.*)': '<rootDir>/src/db/$1',
     '@helpers/(.*)': '<rootDir>/src/helpers/$1',
     '@middlewares/(.*)': '<rootDir>/src/middlewares/$1',
     '@models/(.*)': '<rootDir>/src/models/$1',

@@ -6,6 +6,6 @@ import { helloService } from './services/hello/hello.service';
 
 const router = Router();
 
-router.get('/:message', dtoValidationMiddleware(HelloDto), controllerMiddleware(helloService));
+router.get('/message/:message', dtoValidationMiddleware(HelloDto), controllerMiddleware(helloService));
 
 export default router;
