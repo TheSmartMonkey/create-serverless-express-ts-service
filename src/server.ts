@@ -21,7 +21,7 @@ app.use(sendJsonMiddleware);
 
 // Launch
 if (process.env.LOCAL === 'true') {
-  const port = process.env.SERVER_PORT ?? 3001;
+  const port = process.env.PORT ?? 3001;
   app.listen(port, () => logger.info(`App listening at http://localhost:${port}${BASE_URL}`));
 }
 module.exports.handler = serverless(app);
