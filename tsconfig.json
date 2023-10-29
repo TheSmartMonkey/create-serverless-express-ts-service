@@ -1,30 +1,24 @@
 {
   "compilerOptions": {
-    "lib": ["DOM", "ESNext"],
+    "target": "ES5",
     "module": "commonjs",
+    "declaration": true,
+    "strict": false,
+    "lib": ["es2015"],
     "moduleResolution": "node",
-    "removeComments": true,
-    "sourceMap": true,
-    "target": "ES2021",
-    "outDir": "dist",
-    "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
-    "strict": true,
-    "noImplicitAny": true,
-    "strictNullChecks": true,
-    "noUnusedParameters": true,
-    "noImplicitReturns": true,
-    "noFallthroughCasesInSwitch": true,
-    "skipLibCheck": true,
+    "experimentalDecorators": true,
+
     "baseUrl": ".",
     "paths": {
       "@functions/*": ["src/functions/*"],
       "@libs/*": ["src/libs/*"],
       "@models/*": ["src/models/*"],
+      "@api/*": ["src/api/*"],
     }
   },
-  "include": ["src/**/*.ts", "openapi/*.ts", "serverless.ts", "api-tests/**/*.ts"],
-  "exclude": ["node_modules/**/*", ".serverless/**/*", ".webpack/**/*", "_warmup/**/*", ".vscode/**/*"],
+  "include": ["src/**/*.ts", "serverless.ts"],
+  "exclude": ["node_modules/**/*", ".serverless/**/*", "dist"],
   "ts-node": {
     "require": ["tsconfig-paths/register"]
   }

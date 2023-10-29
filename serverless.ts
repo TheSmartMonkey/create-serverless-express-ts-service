@@ -1,4 +1,4 @@
-import { BASE_URL } from '@libs/adapter/express';
+import { BASE_URL } from '@libs/helpers/constants';
 import type { AWS } from '@serverless/typescript';
 
 const serverlessConfiguration: AWS = {
