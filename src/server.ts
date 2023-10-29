@@ -5,7 +5,7 @@ import { sendJsonMiddleware } from '@middlewares/send-json.middleware';
 import dotenv from 'dotenv';
 import express from 'express';
 import serverless from 'serverless-http';
-import helloRoutes from './api/hello/routes';
+import helloRoutes from '@api/hello/routes';
 
 // Initialize configuration
 dotenv.config();
