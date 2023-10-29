@@ -11,10 +11,12 @@
 
     "baseUrl": ".",
     "paths": {
-      "@functions/*": ["src/functions/*"],
-      "@libs/*": ["src/libs/*"],
-      "@models/*": ["src/models/*"],
       "@api/*": ["src/api/*"],
+      "@helpers/*": ["src/helpers/*"],
+      "@middlewares/*": ["src/middlewares/*"],
+      "@models/*": ["src/models/*"],
+      "@services/*": ["src/services/*"],
+      "@tests/*": ["src/tests/*"],
     }
   },
   "include": ["src/**/*.ts", "serverless.ts"],

@@ -1,4 +1,4 @@
-import { logger } from '@libs/helpers/logger';
+import { logger } from '@helpers/logger';
 
 export function initUnitTests(): void {
   logger.level = process.env.NO_LOGS === 'true' ? 'fatal' : 'debug';

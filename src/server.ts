@@ -1,7 +1,7 @@
-import { BASE_URL } from '@libs/helpers/constants';
-import { logger } from '@libs/helpers/logger';
-import { errorHandlerMiddleware } from '@libs/middlewares/error.middleware';
-import { sendJsonMiddleware } from '@libs/middlewares/send-json.middleware';
+import { BASE_URL } from '@helpers/constants';
+import { logger } from '@helpers/logger';
+import { errorHandlerMiddleware } from '@middlewares/error.middleware';
+import { sendJsonMiddleware } from '@middlewares/send-json.middleware';
 import dotenv from 'dotenv';
 import express from 'express';
 import serverless from 'serverless-http';

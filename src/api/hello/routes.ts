@@ -1,5 +1,5 @@
-import { controllerMiddleware } from '@libs/middlewares/controller.middleware';
-import { dtoValidationMiddleware } from '@libs/middlewares/dto-validation.middleware';
+import { controllerMiddleware } from '@middlewares/controller.middleware';
+import { dtoValidationMiddleware } from '@middlewares/dto-validation.middleware';
 import { Router } from 'express';
 import { HelloDto } from './dtos/hello.dto';
 import { helloService } from './services/hello/hello.service';

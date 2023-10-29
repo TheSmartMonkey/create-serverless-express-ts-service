@@ -1,5 +1,5 @@
-import { BASE_URL } from '@libs/helpers/constants';
 import type { AWS } from '@serverless/typescript';
+import { BASE_URL } from 'src/helpers/constants';
 
 const serverlessConfiguration: AWS = {
   service: 'serverless-express-ts-service',

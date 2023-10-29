@@ -2,8 +2,8 @@
  * @group unit
  */
 import { describe, expect, test } from '@jest/globals';
-import { fakeHelloDto } from '@libs/tests/fake';
-import { initUnitTests } from '@libs/tests/helper';
+import { fakeHelloDto } from '@tests/fake';
+import { initUnitTests } from '@tests/helper';
 import { helloService } from './hello.service';
 
 describe('hello unit', () => {
