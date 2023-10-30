@@ -1,7 +1,6 @@
 /**
  * @group unit
  */
-import { logger } from '@helpers/logger';
 import { fakeUser } from '@tests/fake';
 import { initUnitTests, initUnitTestsMocks } from '@tests/helper';
 import { Request, Response } from 'express';
@@ -15,7 +14,6 @@ describe('auth token unit', () => {
   beforeAll(() => {
     process.env.JWT_TOKEN_SECRET = '1234';
     token = sign(user, process.env.JWT_TOKEN_SECRET, { expiresIn: '30d' });
-    logger.info(token);
     initUnitTests();
   });
 

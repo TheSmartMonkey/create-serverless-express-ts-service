@@ -20,8 +20,8 @@ app.use(`${BASE_URL}/hello`, helloRoutes);
 app.use(`${BASE_URL}/todo`, todoRoutes);
 
 // Middlewares
-app.use(errorHandlerMiddleware);
 app.use(sendJsonMiddleware);
+app.use(errorHandlerMiddleware);
 
 // Launch
 if (process.env.LOCAL === 'true') {
