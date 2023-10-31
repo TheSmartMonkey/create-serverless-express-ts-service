@@ -8,7 +8,7 @@ Template of a simple serverless typescript api service with express
 npx degit https://github.com/TheSmartMonkey/create-serverless-express-ts-service serverless-ts-service
 ```
 
-Changes to be done
+**Changes to be done**
 
 1. package.json config name
 
@@ -26,16 +26,10 @@ Create a cloud formation stack on aws : `npm run deploy`
 
 Remove a cloud formation stack on aws : `npm run undeploy`
 
-## Import templates with plop to code faster
+## Create a new route
 
-Clone the git repository anywhere on you computer
+1. Add your route in src/routes.ts
 
-```sh
-git clone git@github.com:TheSmartMonkey/template-cli.git
-```
+1. Create a new folder in src/api from the hello template
 
-Import templates like `lambda-function-api-endpoint`
-
-```sh
-plop --plopfile <TEMPLATE_CLI_LOCATION/plopfile.mjs> --dest .
-```
+1. You can create your routes in src/api/<YOU_RESOURCE>/routes.ts
