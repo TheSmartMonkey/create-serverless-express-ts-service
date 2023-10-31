@@ -9,6 +9,7 @@ import { requireAuthToken } from './require-auth-token.middleware';
 
 describe('auth token unit', () => {
   let token: string;
+  let nextSpy: jest.Mock<any, any>;
   const user = fakeUser();
 
   beforeAll(() => {
@@ -18,6 +19,7 @@ describe('auth token unit', () => {
   });
 
   beforeEach(() => {
+    nextSpy = jest.fn();
     initUnitTestsMocks();
   });
 
@@ -32,7 +34,6 @@ describe('auth token unit', () => {
         authorization: `Bearer ${token}`,
       },
     } as Request;
-    const nextSpy = jest.fn();
 
     // When
     requireAuthToken(req, {} as Response, nextSpy);
@@ -42,7 +43,7 @@ describe('auth token unit', () => {
     expect(req.body).toEqual({ user: expect.objectContaining({ email: 'fake@gmail.com' }) });
   });
 
-  test('Should fail with TOKEN_IS_UNDEFINED when token is empty', async () => {
+  test('Should throw 401 TOKEN_IS_UNDEFINED when token is empty', async () => {
     // Given
     const req: Request = {
       headers: {
@@ -51,11 +52,14 @@ describe('auth token unit', () => {
     } as Request;
 
     // When
+    requireAuthToken(req, {} as Response, nextSpy);
+
     // Then
-    expect(() => requireAuthToken(req, {} as Response, jest.fn())).toThrow('TOKEN_IS_UNDEFINED');
+    expect(nextSpy).toHaveBeenCalled();
+    expect(nextSpy).toHaveBeenCalledWith({ message: 'TOKEN_IS_UNDEFINED', statusCode: 401 });
   });
 
-  test('Should fail with TOKEN_IS_UNDEFINED when token is missing Bearer', async () => {
+  test('Should throw 401 TOKEN_IS_UNDEFINED when token is missing Bearer', async () => {
     // Given
     const req: Request = {
       headers: {
@@ -64,11 +68,14 @@ describe('auth token unit', () => {
     } as Request;
 
     // When
+    requireAuthToken(req, {} as Response, nextSpy);
+
     // Then
-    expect(() => requireAuthToken(req, {} as Response, jest.fn())).toThrow('TOKEN_IS_UNDEFINED');
+    expect(nextSpy).toHaveBeenCalled();
+    expect(nextSpy).toHaveBeenCalledWith({ message: 'TOKEN_IS_UNDEFINED', statusCode: 401 });
   });
 
-  test('Should fail with TOKEN_IS_UNDEFINED when token has only Bearer', async () => {
+  test('Should throw 401 TOKEN_IS_UNDEFINED when token has only Bearer', async () => {
     // Given
     const req: Request = {
       headers: {
@@ -77,11 +84,14 @@ describe('auth token unit', () => {
     } as Request;
 
     // When
+    requireAuthToken(req, {} as Response, nextSpy);
+
     // Then
-    expect(() => requireAuthToken(req, {} as Response, jest.fn())).toThrow('TOKEN_IS_UNDEFINED');
+    expect(nextSpy).toHaveBeenCalled();
+    expect(nextSpy).toHaveBeenCalledWith({ message: 'TOKEN_IS_UNDEFINED', statusCode: 401 });
   });
 
-  test('Should fail with UNCORRECT_TOKEN_VERIFICATION_FAILED when verification fails', async () => {
+  test('Should throw 403 UNCORRECT_TOKEN_VERIFICATION_FAILED when verification fails', async () => {
     // Given
     const req: Request = {
       headers: {
@@ -90,7 +100,10 @@ describe('auth token unit', () => {
     } as Request;
 
     // When
+    requireAuthToken(req, {} as Response, nextSpy);
+
     // Then
-    expect(() => requireAuthToken(req, {} as Response, jest.fn())).toThrow('UNCORRECT_TOKEN_VERIFICATION_FAILED');
+    expect(nextSpy).toHaveBeenCalled();
+    expect(nextSpy).toHaveBeenCalledWith({ message: 'UNCORRECT_TOKEN_VERIFICATION_FAILED', statusCode: 403 });
   });
 });

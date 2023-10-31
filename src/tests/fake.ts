@@ -11,7 +11,7 @@ export function fakeHelloDto(partial?: Partial<HelloDto>): HelloDto {
 export function fakeUser(partial?: Partial<any>): any {
   return {
     _id: randomUUID(),
-    // email: 'fake@gmail.com',
+    email: 'fake@gmail.com',
     ...partial,
   };
 }
