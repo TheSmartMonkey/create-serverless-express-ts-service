@@ -1,8 +1,10 @@
-export class HttpError {
-  statusCode: number;
-  message: string;
+import { HttpStatus } from "aws-sdk/clients/lambda";
 
-  constructor(statusCode: number, message: string) {
+export class HttpError {
+  statusCode: HttpStatus;
+  message: Uppercase<string>;
+
+  constructor(statusCode: HttpStatus, message: Uppercase<string>) {
     this.statusCode = statusCode;
     this.message = message;
   }
