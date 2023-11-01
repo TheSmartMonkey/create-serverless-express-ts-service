@@ -1,14 +1,14 @@
 {
   "name": "create-serverless-express-ts-service",
   "version": "1.0.0",
-  "main": "dist/src/server.js",
+  "main": "dist/server.js",
   "scripts": {
     "lint": "eslint src --ext .ts",
     "format": "npx prettier --write .",
     "format:check": "npx prettier --check .",
-    "clear": "rmdir /s \"dist\"",
-    "build": "tsc --build tsconfig.json",
-    "start": "cross-env-shell LOCAL='true' npm run build && node -r ts-node/register/transpile-only -r tsconfig-paths/register .",
+    "clear": "rmdir /s /q \"dist\"",
+    "build": "npm run clear && tsc --build tsconfig.build.json && tsc-alias",
+    "start": "cross-env-shell LOCAL='true' node dist/server.js",
     "watch": "cross-env-shell LOCAL='true' nodemon",
     "deploy": "sls deploy --verbose",
     "deploy:prod": "cross-env-shell AWS_STAGE=prod STAGE_TYPE=prod sls deploy --verbose",
@@ -53,6 +53,7 @@
     "serverless-plugin-typescript": "^2.1.2",
     "ts-jest": "^29.0.3",
     "ts-node": "^10.9.1",
+    "tsc-alias": "^1.8.8",
     "tsconfig-paths": "^4.1.1",
     "typescript": "^4.8.3"
   }
