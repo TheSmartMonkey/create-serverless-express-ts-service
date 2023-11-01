@@ -12,8 +12,10 @@ export function requireAuthToken(req: Request, _res: Response, next: NextFunctio
     const token = authHeader.split(' ')[1];
     if (!token) throw new HttpError(401, 'TOKEN_IS_UNDEFINED');
 
+    // @ts-ignore
     verify(token, process.env.JWT_TOKEN_SECRET ?? '', (error: any, user: UserDao) => {
       if (error) throw new HttpError(403, 'UNCORRECT_TOKEN_VERIFICATION_FAILED');
+      if (!user) throw new HttpError(400, 'USER_IS_UNDEFINED_ERROR');
       req.body = { ...req.body, user };
       logger.info({ bodyRequireAuthTokenUser: req?.body });
       next();

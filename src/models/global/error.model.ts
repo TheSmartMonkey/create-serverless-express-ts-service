@@ -1,4 +1,4 @@
-import { HttpStatus } from "aws-sdk/clients/lambda";
+import { HttpStatus } from 'aws-sdk/clients/lambda';
 
 export class HttpError {
   statusCode: HttpStatus;

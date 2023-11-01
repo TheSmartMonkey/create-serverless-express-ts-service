@@ -3,11 +3,12 @@
     "target": "ES5",
     "module": "commonjs",
     "declaration": true,
-    "strict": false,
+    "strict": true,
     "lib": ["es2015"],
     "moduleResolution": "node",
     "esModuleInterop": true,
     "experimentalDecorators": true,
+    "strictPropertyInitialization": false,
 
     "baseUrl": ".",
     "outDir": "dist",
@@ -18,7 +19,7 @@
       "@middlewares/*": ["src/middlewares/*"],
       "@models/*": ["src/models/*"],
       "@services/*": ["src/services/*"],
-      "@tests/*": ["src/tests/*"],
+      "@tests/*": ["src/tests/*"]
     }
   },
   "include": ["src", "serverless.ts"],

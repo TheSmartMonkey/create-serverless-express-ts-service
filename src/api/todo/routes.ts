@@ -12,6 +12,11 @@ const router = Router();
 router.get('/', requireAuthToken, controllerMiddleware(getAllTodosDb));
 router.get('/todoId/:todoId', requireAuthToken, dtoValidationMiddleware(GetTodoByIdTodoDto), controllerMiddleware(getTodoByIdDb));
 router.post('/', requireAuthToken, dtoValidationMiddleware(CreateTodoDto), controllerMiddleware(createTodoDb));
-router.post('/user-email', requireAuthToken, dtoValidationMiddleware(CreateTodoDto), controllerMiddleware(createTodoWithUserEmailAsTitleService));
+router.post(
+  '/user-email',
+  requireAuthToken,
+  dtoValidationMiddleware(CreateTodoDto),
+  controllerMiddleware(createTodoWithUserEmailAsTitleService),
+);
 
 export default router;
