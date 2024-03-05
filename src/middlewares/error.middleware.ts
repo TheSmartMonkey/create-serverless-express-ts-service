@@ -1,9 +1,8 @@
 import { formatHttpResponse } from '@helpers/helper';
 import { logger } from '@helpers/logger';
-import { NextFunction, Request, Response } from 'express';
+import { Request, Response } from 'express';
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-export function errorHandlerMiddleware(error: any, _req: Request, res: Response, _next: NextFunction): void {
+export function errorHandler(error: any, _req: Request, res: Response): void {
   logger.error(error);
   const statusCode = error?.statusCode ?? 500;
   const message = error?.message ?? 'UNKNOWN_ERROR';

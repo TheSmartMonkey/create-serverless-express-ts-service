@@ -1,7 +1,7 @@
 import { BASE_URL } from '@helpers/constants';
 import { logger } from '@helpers/logger';
-import { errorHandlerMiddleware } from '@middlewares/error.middleware';
-import { sendJsonMiddleware } from '@middlewares/send-json.middleware';
+import { errorHandler } from '@middlewares/error.middleware';
+import { sendJson } from '@middlewares/send-json.middleware';
 import { HttpError } from '@models/global/error.model';
 import dotenv from 'dotenv';
 import express from 'express';
@@ -21,8 +21,8 @@ app.use(function (req, res, next) {
   if (!req.route) return next(new HttpError(404, 'ROUTE_DOES_NOT_EXIST'));
   next();
 });
-app.use(sendJsonMiddleware);
-app.use(errorHandlerMiddleware);
+app.use(sendJson);
+app.use(errorHandler);
 
 // Launch
 if (process.env.LOCAL === 'true') {

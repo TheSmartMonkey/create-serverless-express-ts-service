@@ -2,7 +2,7 @@ import { logger } from '@helpers/logger';
 import { validateOrReject } from 'class-validator';
 import { NextFunction, Request, Response } from 'express';
 
-export function dtoValidationMiddleware<T>(type: new () => T) {
+export function dtoValidation<T>(type: new () => T) {
   return async (req: Request, _res: Response, next: NextFunction): Promise<void> => {
     try {
       // Concatenate data
