@@ -3,7 +3,7 @@ import { randomUUID } from 'crypto';
 
 export function fakeHelloDto(partial?: Partial<HelloDto>): HelloDto {
   return {
-    message: 'fakeMessage',
+    messages: 'fakeMessage',
     ...partial,
   };
 }

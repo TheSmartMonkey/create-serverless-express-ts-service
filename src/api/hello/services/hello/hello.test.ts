@@ -14,7 +14,7 @@ describe('hello unit', () => {
   test('Should return a message', async () => {
     // Given
     const message = 'simple message !';
-    const helloDto = fakeHelloDto({ message });
+    const helloDto = fakeHelloDto({ messages: message });
 
     // When
     const response = await helloService(helloDto);
@@ -26,7 +26,7 @@ describe('hello unit', () => {
   test('Should return a empty message', async () => {
     // Given
     const message = '';
-    const helloDto = fakeHelloDto({ message });
+    const helloDto = fakeHelloDto({ messages: message });
 
     // When
     const response = await helloService(helloDto);
