@@ -13,7 +13,7 @@ export function dtoValidationV2({
 }) {
   return async (req: Request, _res: Response, next: NextFunction): Promise<void> => {
     try {
-      logger.info({ body: req?.body, params: req?.params, queryParams: req?.query });
+      logger.info({ [dtoValidationV2.name]: { body: req?.body, params: req?.params, queryParams: req?.query } });
 
       // Validate data
       await Promise.all([validate(req?.body, body), validate(req?.params, params), validate(req?.query, queryParams)]).catch((err) => {

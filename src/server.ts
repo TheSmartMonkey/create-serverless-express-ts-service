@@ -2,9 +2,9 @@ import { BASE_URL } from '@helpers/constants';
 import { logger } from '@helpers/logger';
 import { errorHandler } from '@middlewares/error.middleware';
 import { sendJson } from '@middlewares/send-json.middleware';
-import { HttpError } from '@models/global/error.model';
+import { HttpError } from '@models/global/http-error.model';
 import dotenv from 'dotenv';
-import express from 'express';
+import express, { NextFunction, Request, Response } from 'express';
 import serverless from 'serverless-http';
 import routes from './routes';
 
@@ -17,16 +17,24 @@ app.use(express.json());
 app.use('/', routes);
 
 // Middlewares
-app.use(function (req, res, next) {
+app.use(function (req: Request, _res: Response, next: NextFunction) {
   if (!req.route) return next(new HttpError(404, 'ROUTE_DOES_NOT_EXIST'));
   next();
 });
-app.use(sendJson);
 app.use(errorHandler);
+app.use(sendJson);
 
 // Launch
 if (process.env.LOCAL === 'true') {
   const port = process.env.PORT ?? 3001;
   app.listen(port, () => logger.info(`App listening at http://localhost:${port}${BASE_URL}`));
 }
-module.exports.handler = serverless(app);
+module.exports.handler = serverless(app, {
+  request: function (req: { event: any; context: any }, event: any, context: any) {
+    // Make sure to add this so you can re-use `conn` between function calls.
+    // See https://www.mongodb.com/blog/post/serverless-development-with-nodejs-aws-lambda-mongodb-atlas
+    context.callbackWaitsForEmptyEventLoop = false;
+    req.event = event;
+    req.context = context;
+  },
+});
