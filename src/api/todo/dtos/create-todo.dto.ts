@@ -1,6 +1,10 @@
 import { IsNotEmpty, IsNumber, IsString } from 'class-validator';
 
-export class CreateTodoDto {
+export class CreateTodoParamsDto {}
+
+export class CreateTodoQueryParamsDto {}
+
+export class CreateTodoBodyDto {
   @IsNotEmpty()
   @IsString()
   title: string;
